@@ -1,0 +1,26 @@
+<?php 
+echo 'begin
+';
+$a=3;
+//var_dump(array_sum($nums));
+//var_dump(count($nums));
+$numb =[1,2,3,3,4,5];
+function getResult(array $nums)
+{
+    sort($nums);
+$d=0;
+if(count($nums)%2==0) $d=1;
+    $m = $nums[round(count($nums)/2)-1 + $d ];
+    foreach ($nums as $val){
+        if ($val<$m) {
+            $na[]= $val;
+
+        }
+
+    }
+    return $na;
+}
+var_dump(getResult($numb));
+
+
+?>
