@@ -1,0 +1,19 @@
+function getResult(array $arr,  $w)
+    {
+
+        $i=0;
+   while($i<10000) {
+        $i++;
+        $max= max($arr);
+       if ($max<$i) break;
+           // intdiv($max, 2);
+        $maxkey = array_keys($arr, max($arr))[0];
+       $arr[$maxkey] = intdiv($max, 2);
+        var_dump($arr);
+
+    }
+    $f= false;
+   if (array_sum($arr)<= $w) $f =true;
+   return $f;
+
+}
