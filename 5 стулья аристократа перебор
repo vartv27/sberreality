@@ -1,0 +1,115 @@
+<?php
+echo 'begin
+';
+$a=3;
+echo '<pre>';
+
+$dislikeList = ["1-2,3", "3-4,5", "2-3"];
+
+$mas=[];
+//
+//for ($i=1;$i<=387;$i++) {
+//    $a=3;
+//    for ($j=1;$j<=1000000;$j++) {
+//      if (3<2) $a++;
+//    }
+//
+//    echo $i;
+//}
+
+
+
+
+function getResult( $invitedList, array $dislikeList): bool
+{
+    foreach ($dislikeList as $val){
+        $e = explode('-',$val);
+
+        $g = explode(',',$e[1]);
+        $mas[$e[0]]= $g;
+    }
+  //  var_dump($mas);
+    $inv = $invitedList;
+    for ($i=0;$i<=$inv+1;$i++) {
+        $b[$i] = $i;
+    }
+  //  var_dump($b);
+    $mestoi = 0;
+
+
+
+    function uv($b, $k, $inv) {
+        $b[$k] = $b[$k] +1;
+        if ($b[$k] == $b[$k+1]) $b[$k]++;
+// здесь можно сделать факторила если if ($b[$k] ==$b[$k+i]) $b++;
+        if ($b[$k]>$inv) {
+            $b[$k] = 1;
+            $b = uv($b,$k+1, $inv);
+        }
+        return $b;
+    }
+
+    $i=0;
+    $ff = 0;
+    while($i<=987*10000){
+        $k = 1;
+        $b = uv($b, $k, $inv);
+
+        $f=0;
+        for($ii=1;$ii<=$inv;$ii++){
+            for($jj=1;$jj<=$inv;$jj++){
+                if ($b[$ii] == $b[$jj] && $ii!=$jj) {
+                   $f=1;
+                }
+            }
+        }
+
+        if($f==0){
+            $zf = 0;
+            foreach ($mas as $key=>$val_mas){
+                $bkey = array_search($key,$b);  // место $KEY  гостя
+                foreach ($val_mas as $item) {
+                    if ($b[$bkey+1] == $item) $zf=1;
+                    if ($b[$bkey-1] == $item) $zf=1;
+                }
+            }
+        //    var_dump($b);
+            if ($zf==0) {
+                echo '
+                  ';
+            //    var_dump($b);
+
+                return true;
+
+            }
+        }
+        if ($b[$inv+1]==2)  { break; }
+        $i++;
+    }
+
+    return false;
+}
+
+
+var_dump(getResult(5, $dislikeList));
+?>
+Сегодня Аристократия организовывает пир. Мы знаем количество гостей, ваша задача рассадить всех за стол.
+
+Однако, некоторые гости дали вам список неприятелей, с которыми они не сядут.
+
+Стулья расставили так, что у стола оказалось два крайних места, у которых только один соседний гость. В остальных случаях соседа два.
+
+Определите, можно ли рассадить гостей так, чтобы все оказались довольны.
+
+Ввод:
+
+invited_list -  количество приглашённых гостей,  0<invited_list<10
+dislike_list - строчный массив неприятелей, ["1-2,3"] - означает, что гость под номером 1 не сядет с гостями 2 и 3
+Вывод:
+
+Boolean - возможно ли рассадить гостей так, чтобы они все были довольны
+Пример:
+
+invited_list = 4
+dislike_list = ["1-2", "3-4"]
+getResult(invited_list, dislike_list) = True // [1, 4, 2, 3]
