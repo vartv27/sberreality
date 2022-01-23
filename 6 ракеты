@@ -1,0 +1,33 @@
+
+function getResult(array $rocketPos, array $rocketSpeed): int
+{
+      foreach ($rocketPos as $kr1 =>$rock) {
+            $b[$kr1]=0;
+      }
+      
+      
+
+     foreach ($rocketPos as $kr1 =>$rock) { 
+$rocketPos0[$kr1] = $rock;
+     }
+
+     
+    foreach ($rocketPos as $kr1 =>$rock) {
+         foreach ($rocketPos as $kr2=>$rock2) {
+           if ( $kr1!=$kr2) {
+                    if (($rocketPos[$kr1] <= $rocketPos[$kr2]) &&
+                     ($rocketSpeed[$kr1] > $rocketSpeed[$kr2]) ){
+                        $b[$kr1]=1;
+                    }
+           }
+       }
+    }
+
+
+        $total=0;
+  foreach ($rocketPos as $kr1 =>$rock) {
+           if ($b[$kr1]==0) $total++;
+      }
+
+return $total;
+}
