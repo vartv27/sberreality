@@ -1,0 +1,38 @@
+<?php 
+echo 'begin
+';
+$a=3;
+//var_dump(array_sum($nums));
+//var_dump(count($nums));
+$numb =[1,2,3,3,4,5];
+$numb =[1,2,8,1,2,1,2];
+
+echo '<pre>';
+
+function getResult(array $numb): bool
+{
+    $f = true;
+
+    foreach ($numb as $key0=>$val0) {
+        foreach ($numb as $key => $val) {
+            $df = 0;
+            foreach ($numb as $key2 => $val2) {
+                if ($val == $val2 && ($key != $key2) && $key <= $key2) {
+                    unset($numb[$key]);
+                    unset($numb[$key2]);
+                    $df = 1;
+                    break;
+                }
+            }
+            if ($df) break;
+        }
+    }
+
+    if (count($numb) >1) $f= false;
+    var_dump(($numb));
+       return $f;
+}
+
+var_dump(getResult($numb));
+
+?>
