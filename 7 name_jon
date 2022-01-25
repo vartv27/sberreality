@@ -1,0 +1,88 @@
+<?php
+
+
+
+
+function getResult(array $names, array $statements): array
+{
+
+function check(array $names, array $statements) {
+
+foreach ($statements as $st ){
+     $pos = strstr ($st , 'is youngest');
+     if ($pos)
+     {
+          foreach ($names as $nm){
+              $posn =strstr ($st , $nm);
+              if ($posn) {  
+                  if ($nm != $names[0]) return false;
+              }
+          }
+     }
+
+
+     $pos = strstr ($st , 'is oldest');
+     if ($pos)
+     {
+          foreach ($names as $nm){
+              $posn =strstr ($st , $nm);
+              if ($posn) {  
+                  if ($nm != $names[2]) return false;
+              }
+          }
+     }
+
+     $pos = strstr ($st , 'is not oldest');
+     if ($pos)
+     {
+          foreach ($names as $nm){
+              $posn =strstr ($st , $nm);
+              if ($posn) {  
+                    if ($nm == $names[2]) return false;
+              }
+          }
+     }
+
+    $pos = strstr ($st , 'is not youngest');
+     if ($pos)
+     {
+          foreach ($names as $nm){
+              $posn = strstr ($st , $nm);
+              if ($posn) {  
+                    if ($nm == $names[0]) return false;
+              }
+          }
+     }
+
+}
+    return true;
+}
+
+   $mas[0] = $names[0];
+    $mas[1] = $names[1];
+    $mas[2] = $names[2];
+    if (check($mas,$statements)) return $mas;
+    $mas[0] = $names[0];
+    $mas[1] = $names[2];
+    $mas[2] = $names[1];
+    if (check($mas,$statements)) return $mas;
+    $mas[0] = $names[1];
+    $mas[1] = $names[2];
+    $mas[2] = $names[0];
+    if (check($mas,$statements)) return $mas;
+    $mas[0] = $names[1];
+    $mas[1] = $names[0];
+    $mas[2] = $names[2];
+    if (check($mas,$statements)) return $mas;
+    $mas[0] = $names[2];
+    $mas[1] = $names[0];
+    $mas[2] = $names[1];
+    if (check($mas,$statements)) return $mas;
+    $mas[0] = $names[2];
+    $mas[1] = $names[1];
+    $mas[2] = $names[0];
+    if (check($mas,$statements)) return $mas;
+return $mas;
+
+  
+}
